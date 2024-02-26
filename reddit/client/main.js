@@ -1,19 +1,47 @@
-console.log('Log from /client/main.js');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Meteor} from 'meteor/meteor';
 
-// we previously had the following named imports
-// import { say_hello, name } from './../imports/utils.js';
-// in order to import a default we will have to add something before the named imports
-import any_name_default_var, {say_hello, name} from './../imports/utils.js'; // multiple named imports
-// we can rename this default to anything we want. Use something that makes sense
+const renderPosts = function (passed_posts) {
+  console.log(passed_posts);
+  let formattedPosts = passed_posts.map(function(post){
+    return <p key={post._id}>{post.topic} have {post.votes} vote[s]</p>;
+  });
 
-console.log(any_name_default_var);
-
-// we are not required to import anything - we can just import the default
-// import defaultVariableNameYouChoose from './../imports/utils.js';
-// console.log(defaultVariableNameYouChoose);
+  return formattedPosts;
+};
 
 
-/*
-console.log( say_hello() );
-console.log( name );
-*/
+Meteor.startup(function () {
+
+  const posts = [{
+                    _id: '01',
+                    topic: 'cats',
+                    votes: 5,
+                  },
+                  {
+                    _id: '02',
+                    topic: 'dogs',
+                    votes: 2,
+                  },
+                  {
+                    _id: '03',
+                    topic: 'birds',
+                    votes: 17,
+                  }
+                ];
+
+
+  let title = '441 reddit';
+  let jsx = (
+         <div>
+            <h1>{title}</h1>
+
+            {/*renderPosts('hi')*/}
+            {renderPosts(posts)}
+         </div>
+        );
+
+  ReactDOM.render(jsx, document.getElementById('content'));
+
+});
