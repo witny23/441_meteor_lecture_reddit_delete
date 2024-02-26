@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react'; // specify the module and then specify the library name
                             // meteor takes care of the rest
 import ReactDOM from 'react-dom';
@@ -28,6 +29,55 @@ Meteor.startup(function () {  // this takes a function as its one and only argum
   );
 
   ReactDOM.render(jsx, document.getElementById('content'));
+=======
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Meteor} from 'meteor/meteor';
+
+const renderPosts = function (passed_posts) {
+  console.log(passed_posts);
+  let formattedPosts = passed_posts.map(function(post){
+    return <p key={post._id}>{post.topic} have {post.votes} vote[s]</p>;
+  });
+
+  return formattedPosts;
+};
+
+>>>>>>> 60aa286e8d5beb3a5033bfeda1114b4b1258dbb3
+
+Meteor.startup(function () {
+
+<<<<<<< HEAD
+=======
+  const posts = [{
+                    _id: '01',
+                    topic: 'cats',
+                    votes: 5,
+                  },
+                  {
+                    _id: '02',
+                    topic: 'dogs',
+                    votes: 2,
+                  },
+                  {
+                    _id: '03',
+                    topic: 'birds',
+                    votes: 17,
+                  }
+                ];
 
 
+  let title = '441 reddit';
+  let jsx = (
+         <div>
+            <h1>{title}</h1>
+
+            {/*renderPosts('hi')*/}
+            {renderPosts(posts)}
+         </div>
+        );
+
+  ReactDOM.render(jsx, document.getElementById('content'));
+
+>>>>>>> 60aa286e8d5beb3a5033bfeda1114b4b1258dbb3
 });
